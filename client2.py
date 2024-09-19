@@ -1,9 +1,15 @@
 import csv
+import os
 
-# File paths
-csv_file = "37th_Early_Bird_Open_Mens_5000_Meters_HS_Open_5K_24.csv"
+folder_path = 'meet' #not sure if this is correctly getting to the folder
 output_file = "LamplighterInvite23.html"
 
+# Loop through files in the directory
+for file_name in os.listdir(folder_path):
+    file_path = os.path.join(folder_path, file_name)
+    if os.path.isfile(file_path):
+        # Open or process the file
+    csv_file = file_name
 # Open the CSV file and extract the data
 with open(csv_file, newline='', encoding='utf-8') as file:
     reader = csv.reader(file)
@@ -43,40 +49,41 @@ print("Athlete Results:", athletes)
 
 
 #replacing the values in the HTML
-html_content = f'''<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href = "css/reset.css">
-    <link rel = "stylesheet" href = "css/style.css">
-    <title>{meet_name} Country Meet</title>
-</head>
-<body>
-    <header>
-        <h1>{meet_name}</h1>
-        <h2>{meet_date}</h2>
-    </header>
-    <!-- Section for overall team results -->
-    <section id="team-results">
-        <h2>Overall Team Results</h2>
-        <p><a href="{team_results_link}">Team results are available here.</a></p>
-    </section>
-    <!-- Section for athlete table -->
-    <section id="athlete-results">
-        <h2>Athlete Results</h2>
-        <table id="athlete-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Time</th>
-                    <th>Place</th>
-                    <th>Image</th>
-                    <th>Feedback</th>
-                </tr>
-            </thead>
-            <tbody>
-'''
+# html_content = 
+# f'''<!DOCTYPE html>
+# <html lang="en">
+# <head>
+#     <meta charset="UTF-8">
+#     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+#     <link rel = "stylesheet" href = "css/reset.css">
+#     <link rel = "stylesheet" href = "css/style.css">
+#     <title>{meet_name} Country Meet</title>
+# </head>
+# <body>
+#     <header>
+#         <h1>{meet_name}</h1>
+#         <h2>{meet_date}</h2>
+#     </header>
+#     <!-- Section for overall team results -->
+#     <section id="team-results">
+#         <h2>Overall Team Results</h2>
+#         <p><a href="{team_results_link}">Team results are available here.</a></p>
+#     </section>
+#     <!-- Section for athlete table -->
+#     <section id="athlete-results">
+#         <h2>Athlete Results</h2>
+#         <table id="athlete-table">
+#             <thead>
+#                 <tr>
+#                     <th>Name</th>
+#                     <th>Time</th>
+#                     <th>Place</th>
+#                     <th>Image</th>
+#                     <th>Feedback</th>
+#                 </tr>
+#             </thead>
+#             <tbody>
+# '''
 # Add each athlete's information to the table
 for athlete in athletes:
     athlete_name = athlete[5]  # Column F - athlete-name
