@@ -1,32 +1,42 @@
-<!-- 
-#This is the HTML Code
-# Start building the HTML structure
-html_content = f''' -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel = "stylesheet" href = "css/reset.css">
-   <link rel = "stylesheet" href = "css/style.css">
-   <title>{meet_name} Country Meet</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "css/reset.css">
+    <link rel = "stylesheet" href = "css/style.css">
+    <title>Cross Country Coaching Events</title>
 </head>
 <body>
 
-<!-- #link to the various meets -->
-<h1> Ann Arbor Skyline Cross Country Homepage </h1>
+<header>
+    <h1>Cross Country Events Tracker</h1>
+</header>
+
 <main>
+    
+    <section id="meets-section">
+        <h2>Cross Country Meet Summaries </h2>
 
-   <header>
-      <h1>{meet_name}</h1>
-      <h2>{meet_date}</h2>
-  </header>
-
-  
-
+            <h3>{Meet Name}</h3>
+            <p>{Team_Name}: {Team_Score}</p>
+            <figure>
+                <img src="{Image URL}" alt="Athlete {Athlete Name} at {Meet Name}<">
+                <figcaption>Gallery of {Meet_Name}</figcaption>
+            </figure>
+                <h4>{Athlete_Results} </h4>
+                <ol>
+                    <li>{Athlete_Name} - Rank: {Athlete_Rank}, Time: {Athlete_Name}</li>
+                    <!-- Add more athletes as needed -->
+                </ol>
+            </section>
+        <!-- Repeat <article> for more meets -->
+    </section>
 </main>
 
+<footer>
+    <p>&copy; [Year] Cross Country Coaching Staff</p>
+</footer>
 
-
-
-   
+</body>
+</html>
