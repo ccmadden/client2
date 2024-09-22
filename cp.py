@@ -120,8 +120,50 @@ for file_name in os.listdir(directory):
                 </tbody>
             </table>
         </section>
-        </div>
         """
+        athlete_results_start_index = find_row_index(rows, 'Place,Grade,Name,Athlete Link,Time,Team,Team Link,Profile Pic')
+
+        # Add athlete results if available
+        if athlete_results_start_index is not None:
+            athlete_results_start_index += 1  # Skip the header
+
+            # Add a section for the top 5 athletes
+            html_content += """
+            <section class="top-athletes">
+                <h4>Top 5 Athletes</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Place</th>
+                            <th>Name</th>
+                            <th>Time</th>
+                            <th>Team</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            """
+
+            # Loop through the top 5 athlete results
+            for row in rows[athlete_results_start_index:athlete_results_start_index + 5]:
+                if len(row) < 5:
+                    continue  # Skip incomplete rows
+                # Add the athlete results to the HTML
+                html_content += f"""
+                        <tr>
+                            <td>{row[0]}</td>
+                            <td><a href="{row[3]}">{row[2]}</a></td>
+                            <td>{row[4]}</td>
+                            <td>{row[5]}</td>
+                        </tr>
+                """
+
+            html_content += """
+                    </tbody>
+                </table>
+            </section>
+            """
+
+        html_content += "</div>"
 
 # After processing all the meets, finalize the HTML content
 html_content += html_end
@@ -129,5 +171,4 @@ html_content += html_end
 # Write the complete HTML content to the output file
 with open(output_file, 'w', encoding='utf-8') as html_file:
     html_file.write(html_content)
-
 
